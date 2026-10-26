@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,3 +18,7 @@ Route::get('/transactions/create', function () {
 Route::get('/transactions', function () {
     return view('dompetku.transactions.index');
 })->name('transactions.index');
+
+Route::post(
+    '/transactions/create', [TransactionController::class, 'store']
+)->name('transactions.store');

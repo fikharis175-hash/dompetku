@@ -21,7 +21,7 @@
             </div>
 
             {{-- UI form dahulu. Form belum menyimpan data sebelum route/controller store dibuat. --}}
-            <form id="transactionForm" action="#" method="POST">
+            <form id="transactionForm" action="{{ route('transactions.store') }}" method="POST">
                 @csrf
                 <fieldset class="border-0 p-0 m-0">
                     <legend class="form-label mb-2">Jenis Transaksi <span class="required">*</span></legend>
@@ -66,7 +66,10 @@
                 <div class="form-divider"></div>
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                     <button type="reset" class="btn btn-outline-senstech"><i class="bi bi-arrow-counterclockwise me-1"></i>Reset</button>
-                    <div class="d-flex gap-2 ms-auto"><a href="{{ route('transactions.index') }}" class="btn btn-outline-senstech">Batal</a><button type="submit" class="btn btn-senstech"><i class="bi bi-floppy me-1"></i>Simpan Transaksi</button></div>
+                    <div class="d-flex gap-2 ms-auto">
+                        <a href="{{ route('transactions.index') }}" class="btn btn-outline-senstech">Batal</a>
+                        <button type="submit" class="btn btn-senstech"><i class="bi bi-floppy me-1"></i>Simpan Transaksi</button>
+                    </div>
                 </div>
             </form>
         </section>
@@ -96,9 +99,9 @@
     const descriptionCount = document.getElementById('descriptionCount');
     descriptionInput.addEventListener('input', () => descriptionCount.textContent = descriptionInput.value.length);
 
-    document.getElementById('transactionForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-        alert('Tampilan form sudah siap, bro. Penyimpanan baru aktif setelah route dan controller Laravel dibuat.');
-    });
+    // document.getElementById('transactionForm').addEventListener('submit', (event) => {
+    //     event.preventDefault();
+    //     alert('Tampilan form sudah siap, bro. Penyimpanan baru aktif setelah route dan controller Laravel dibuat.');
+    // });
 </script>
 @endpush
