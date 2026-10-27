@@ -15,10 +15,15 @@ Route::get('/transactions/create', function () {
     return view('dompetku.transactions.create');
 })->name('transactions.create');
 
-Route::get('/transactions', function () {
-    return view('dompetku.transactions.index');
-})->name('transactions.index');
+// Route::get('/transactions', function () {
+//     return view('dompetku.transactions.index');
+// })->name('transactions.index');
+Route::get('/transactions', [TransactionController::class, 'show'])->name('transactions.index');
 
 Route::post(
     '/transactions/create', [TransactionController::class, 'store']
 )->name('transactions.store');
+
+// Route::get(
+//     '/transactions', [TransactionController::class, 'show']
+// )->name('transactions.show');

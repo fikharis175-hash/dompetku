@@ -32,9 +32,10 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $transactions = Transaction::latest()->get();
+        return view('dompetku.transactions.index', compact('transactions'));
     }
 
     /**
