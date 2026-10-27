@@ -7,6 +7,19 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    public function index() 
+    {
+        $totalRevenue = Transaction::query()
+            ->where('type', 'income')
+            ->sum('amount');
+        $totalExpenses = Transaction::query()
+            ->where('type', 'expense')
+            ->sum('amount');
+        $transactions = Transaction::latest()->get();
+        $netBalance = $totalRevenue - $totalExpenses;
+        
+        return view('dompetku.transactions.index', compact('totalRevenue', 'totalExpenses', 'transactions', 'netBalance'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,8 +47,7 @@ class TransactionController extends Controller
      */
     public function show()
     {
-        $transactions = Transaction::latest()->get();
-        return view('dompetku.transactions.index', compact('transactions'));
+        // 
     }
 
     /**

@@ -19,8 +19,7 @@
                 <span class="stat-icon income-bg"><i class="bi bi-arrow-down-left"></i></span>
                 <div>
                     <div class="stat-label">Total Pemasukan</div>
-                    <div class="stat-value">Rp 6.200.000</div>
-                    <div class="stat-sub">Data contoh</div>
+                    <div class="stat-value">Rp {{ number_format($totalRevenue, '0', ',', '.') }}</div>
                 </div>
             </div>
         </div>
@@ -31,8 +30,7 @@
                 <span class="stat-icon expense-bg"><i class="bi bi-arrow-up-right"></i></span>
                 <div>
                     <div class="stat-label">Total Pengeluaran</div>
-                    <div class="stat-value">Rp 1.045.000</div>
-                    <div class="stat-sub">Data contoh</div>
+                    <div class="stat-value">Rp {{ number_format($totalExpenses, '0', ',', '.') }}</div>
                 </div>
             </div>
         </div>
@@ -42,8 +40,7 @@
             <div class="d-flex align-items-center gap-3"><span class="stat-icon balance-bg"><i class="bi bi-wallet2"></i></span>
                 <div>
                     <div class="stat-label">Saldo Bersih</div>
-                    <div class="stat-value">Rp 5.155.000</div>
-                    <div class="stat-sub">Data contoh</div>
+                    <div class="stat-value">Rp {{ number_format($netBalance, '0', ',', '.') }}</div>
                 </div>
             </div>
         </div>

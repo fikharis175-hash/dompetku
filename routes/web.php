@@ -18,12 +18,8 @@ Route::get('/transactions/create', function () {
 // Route::get('/transactions', function () {
 //     return view('dompetku.transactions.index');
 // })->name('transactions.index');
-Route::get('/transactions', [TransactionController::class, 'show'])->name('transactions.index');
+Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
 
 Route::post(
     '/transactions/create', [TransactionController::class, 'store']
 )->name('transactions.store');
-
-// Route::get(
-//     '/transactions', [TransactionController::class, 'show']
-// )->name('transactions.show');
