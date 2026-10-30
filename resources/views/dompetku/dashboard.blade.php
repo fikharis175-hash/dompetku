@@ -30,7 +30,7 @@
                 <div class="stat-icon income"><i class="bi bi-arrow-down-left"></i></div>
                 <div class="min-w-0">
                     <div class="stat-label">Total Pemasukan</div>
-                    <div class="stat-value">Rp 5.000.000</div>
+                    <div class="stat-value">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</div>
                     <div class="stat-foot"><i class="bi bi-calendar3 me-1"></i>Bulan ini</div>
                 </div>
             </article>
@@ -40,7 +40,7 @@
                 <div class="stat-icon expense"><i class="bi bi-arrow-up-right"></i></div>
                 <div class="min-w-0">
                     <div class="stat-label">Total Pengeluaran</div>
-                    <div class="stat-value">Rp 3.250.000</div>
+                    <div class="stat-value">Rp {{ number_format($totalExpenses, 0, ',', '.') }}</div>
                     <div class="stat-foot"><i class="bi bi-calendar3 me-1"></i>Bulan ini</div>
                 </div>
             </article>
@@ -50,7 +50,7 @@
                 <div class="stat-icon balance"><i class="bi bi-wallet2"></i></div>
                 <div class="min-w-0">
                     <div class="stat-label">Saldo Saat Ini</div>
-                    <div class="stat-value">Rp 1.750.000</div>
+                    <div class="stat-value">Rp {{ number_format($netBalance, 0, ',', '.') }}</div>
                     <div class="stat-foot"><i class="bi bi-info-circle me-1"></i>Pemasukan dikurangi pengeluaran</div>
                 </div>
             </article>
@@ -76,26 +76,24 @@
                     <table class="table transaction-table align-middle mb-0">
                         <thead><tr><th>Transaksi</th><th>Tanggal</th><th>Jenis</th><th class="text-end">Nominal</th></tr></thead>
                         <tbody>
+                            @foreach ($transactions as $item)
                             <tr>
-                                <td><div class="transaction-name"><span class="transaction-symbol"><i class="bi bi-wallet2"></i></span><span><span class="d-block transaction-title">Gaji Bulanan</span><span class="d-block transaction-subtitle">Gaji</span></span></div></td>
-                                <td>12 Okt 2026</td><td><span class="type-badge type-income">Pemasukan</span></td><td class="text-end"><span class="amount-income">+ Rp 5.000.000</span></td>
+                                <td>
+                                    <div class="transaction-name">
+                                        <span class="transaction-symbol"><i class="bi {{ $item->icon }}"></i></span>
+                                        <span class="d-block transaction-title">{{ $item->category }}</span>
+                                        <span class="d-block transaction-subtitle">{{ $item->description }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ $item->transaction_date }}</td>
+                                <td>
+                                    <span class="type-badge {{ $item->type === 'income' ? 'type-income' : 'type-expense' }}">{{ $item->type === 'income' ? 'Pemasukan' : 'Pengeluaran' }}</span>
+                                </td>
+                                <td class="text-end">
+                                    <span class="{{ $item->type === 'income' ? 'amount-income' : 'amount-expense' }}">{{ $item->type === 'income' ? '+ ' : '- ' }}Rp {{ number_format($item->amount, '0', ',', '.') }}</span>
+                                </td>
                             </tr>
-                            <tr>
-                                <td><div class="transaction-name"><span class="transaction-symbol"><i class="bi bi-cart3"></i></span><span><span class="d-block transaction-title">Belanja Bulanan</span><span class="d-block transaction-subtitle">Belanja</span></span></div></td>
-                                <td>10 Okt 2026</td><td><span class="type-badge type-expense">Pengeluaran</span></td><td class="text-end"><span class="amount-expense">− Rp 350.000</span></td>
-                            </tr>
-                            <tr>
-                                <td><div class="transaction-name"><span class="transaction-symbol"><i class="bi bi-cup-hot"></i></span><span><span class="d-block transaction-title">Makan Siang</span><span class="d-block transaction-subtitle">Makanan & Minuman</span></span></div></td>
-                                <td>08 Okt 2026</td><td><span class="type-badge type-expense">Pengeluaran</span></td><td class="text-end"><span class="amount-expense">− Rp 45.000</span></td>
-                            </tr>
-                            <tr>
-                                <td><div class="transaction-name"><span class="transaction-symbol"><i class="bi bi-car-front"></i></span><span><span class="d-block transaction-title">Transportasi</span><span class="d-block transaction-subtitle">Transportasi</span></span></div></td>
-                                <td>05 Okt 2026</td><td><span class="type-badge type-expense">Pengeluaran</span></td><td class="text-end"><span class="amount-expense">− Rp 100.000</span></td>
-                            </tr>
-                            <tr>
-                                <td><div class="transaction-name"><span class="transaction-symbol"><i class="bi bi-laptop"></i></span><span><span class="d-block transaction-title">Proyek Freelance</span><span class="d-block transaction-subtitle">Freelance</span></span></div></td>
-                                <td>03 Okt 2026</td><td><span class="type-badge type-income">Pemasukan</span></td><td class="text-end"><span class="amount-income">+ Rp 1.200.000</span></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

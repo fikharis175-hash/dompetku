@@ -98,38 +98,38 @@
             </thead>
             <tbody id="transactionRows">
                 @foreach ($transactions as $item)
-                <tr data-type="{{ $item->type }}" data-category="{{ $item->category }}" data-date="{{ $item->transaction_date }}" data-amount="{{ $item->amount }}">
-                    <td class="text-nowrap">{{ $item->transaction_date }}</td>
-                    <td>
-                        <span class="type-badge {{ $item->type == 'income' ? 'type-income' : 'type-expense' }}">{{ $item->type == 'income' ? 'Pemasukan' : 'Pengeluaran' }}</span>
-                    </td>
-                    <td>
-                        <span class="transaction-icon me-2"><i class="bi bi-wallet2"></i></span><span class="category-name">{{ $item->category }}</span>
-                    </td>
-                    <td>
-                        <div class="transaction-name">Gaji Bulanan</div>
-                        <div class="transaction-subtitle">Gaji bulan Oktober</div>
-                    </td>
-                    <td class="text-end">
-                        <span class="{{ $item->type == 'income' ? 'amount-income' : 'amount-expense' }}">{{ $item->type == 'income' ? '+ ' : '- ' }}Rp {{ number_format($item->amount, '0', ',', '.') }}</span>
-                    </td>
-                    <td class="text-center">
-                        <div class="dropdown transaction-actions d-inline-block">
-                            <button class="row-action dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Aksi transaksi"><i class="bi bi-three-dots-vertical"></i></button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
-                                    <button class="dropdown-item js-edit-transaction" type="button"><i class="bi bi-pencil-square me-2"></i>Edit</button>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider my-1">
-                                </li>
-                                <li>
-                                    <button class="dropdown-item text-danger js-delete-transaction" type="button"><i class="bi bi-trash3 me-2"></i>Delete</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
+                    <tr data-type="{{ $item->type }}" data-category="{{ $item->category }}" data-date="{{ $item->transaction_date }}" data-amount="{{ $item->amount }}">
+                        <td class="text-nowrap">{{ $item->transaction_date }}</td>
+                        <td>
+                            <span class="type-badge {{ $item->type == 'income' ? 'type-income' : 'type-expense' }}">{{ $item->type == 'income' ? 'Pemasukan' : 'Pengeluaran' }}</span>
+                        </td>
+                        <td>
+                            <span class="transaction-icon me-2"><i class="bi {{ $item->icon }}"></i></span><span class="category-name">{{ $item->category }}</span>
+                        </td>
+                        <td>
+                            <div class="transaction-name">Gaji Bulanan</div>
+                            <div class="transaction-subtitle">Gaji bulan Oktober</div>
+                        </td>
+                        <td class="text-end">
+                            <span class="{{ $item->type == 'income' ? 'amount-income' : 'amount-expense' }}">{{ $item->type == 'income' ? '+ ' : '- ' }}Rp {{ number_format($item->amount, '0', ',', '.') }}</span>
+                        </td>
+                        <td class="text-center">
+                            <div class="dropdown transaction-actions d-inline-block">
+                                <button class="row-action dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Aksi transaksi"><i class="bi bi-three-dots-vertical"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <button class="dropdown-item js-edit-transaction" type="button"><i class="bi bi-pencil-square me-2"></i>Edit</button>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider my-1">
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item text-danger js-delete-transaction" type="button"><i class="bi bi-trash3 me-2"></i>Delete</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
