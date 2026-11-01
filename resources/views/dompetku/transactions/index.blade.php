@@ -135,7 +135,10 @@
         </table>
         <div id="emptyState" class="empty-state"><i class="bi bi-search d-block mb-2"></i><strong class="d-block mb-1">Transaksi tidak ditemukan</strong><span class="small">Coba ubah kata kunci atau filter kamu.</span></div>
     </div>
-    <div class="table-foot d-flex align-items-center justify-content-between flex-wrap gap-3 mt-3"><div class="small text-secondary" id="showingText">Menampilkan 8 dari 8 transaksi contoh</div><span class="small text-secondary">Data contoh · Pagination belum dibuat</span></div>
+    <div class="table-foot d-flex align-items-center justify-content-between flex-wrap gap-3 mt-3">
+        <div class="small text-secondary" id="showingText">Menampilkan 8 dari 8 transaksi contoh</div>
+        <span class="small text-secondary">{{ $transactions->links('pagination::bootstrap-5') }}</span>
+    </div>
 </section>
 <!-- MODAL EDIT TRANSAKSI: bekerja pada data contoh di browser -->
 <div class="modal fade" id="editTransactionModal" tabindex="-1" aria-labelledby="editTransactionModalLabel" aria-hidden="true">

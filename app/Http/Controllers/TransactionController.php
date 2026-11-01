@@ -15,7 +15,8 @@ class TransactionController extends Controller
         $totalExpenses = Transaction::query()
             ->where('type', 'expense')
             ->sum('amount');
-        $transactions = Transaction::latest()->get();
+        $transactions = Transaction::latest()
+            ->paginate(5);
         $netBalance = $totalRevenue - $totalExpenses;
         
         return view('dompetku.transactions.index', compact('totalRevenue', 'totalExpenses', 'transactions', 'netBalance'));
